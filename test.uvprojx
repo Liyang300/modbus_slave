@@ -683,6 +683,16 @@
               <FileType>5</FileType>
               <FilePath>.\SYSTEM\usart\usart.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_clock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SYSTEM\sys\bsp_clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_clock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SYSTEM\sys\bsp_clock.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -769,16 +779,6 @@
               <FilePath>.\HARDWARE\modbus\modbus_port.h</FilePath>
             </File>
             <File>
-              <FileName>bsp_clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HARDWARE\modbus\bsp_clock.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_clock.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HARDWARE\modbus\bsp_clock.h</FilePath>
-            </File>
-            <File>
               <FileName>modbus_data.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\HARDWARE\modbus\modbus_data.c</FilePath>
@@ -787,6 +787,26 @@
               <FileName>modbus_data.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\HARDWARE\modbus\modbus_data.h</FilePath>
+            </File>
+            <File>
+              <FileName>modbus_rtu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HARDWARE\modbus\modbus_rtu.c</FilePath>
+            </File>
+            <File>
+              <FileName>modbus_rtu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\modbus\modbus_rtu.h</FilePath>
+            </File>
+            <File>
+              <FileName>modbus_storage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HARDWARE\modbus\modbus_storage.c</FilePath>
+            </File>
+            <File>
+              <FileName>modbus_storage.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\modbus\modbus_storage.h</FilePath>
             </File>
           </Files>
         </Group>

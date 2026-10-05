@@ -34,18 +34,6 @@ typedef struct
     uint32_t flash_write_errors;
 } ModbusStatistics_t;
 
-typedef struct
-{
-    uint16_t magic_low;
-    uint16_t magic_high;
-    uint16_t version;
-    uint16_t slave_address;
-    uint16_t baudrate_low;
-    uint16_t baudrate_high;
-    uint16_t serial_format;
-    uint16_t crc;
-} ModbusStoredRecord_t;
-
 
 
 

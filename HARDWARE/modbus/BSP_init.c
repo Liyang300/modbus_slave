@@ -9,8 +9,9 @@ void BSP_Gpio_Init(void)
 {
     GPIO_InitTypeDef gpio;
 
-    RCC_APB2PeriphClockCmd(MODBUS_USART_GPIO_RCC | MODBUS_RS485_DE_RCC | RCC_APB2Periph_AFIO, ENABLE);
-
+    /* GPIO 和 AFIO 固定挂在 APB2，不能用 RCC_APB1PeriphClockCmd 去开。 */
+    RCC_APB2PeriphClockCmd(MODBUS_RS485_DE_RCC | MODBUS_USART_GPIO_RCC | RCC_APB2Periph_AFIO, ENABLE);
+  
     gpio.GPIO_Pin = MODBUS_USART_TX_PIN;
     gpio.GPIO_Speed = GPIO_Speed_50MHz;
     gpio.GPIO_Mode = GPIO_Mode_AF_PP;
@@ -164,7 +165,14 @@ void BSP_Usart_Init(const ModbusSerialConfig_t *config)
 {
     USART_InitTypeDef usart;
 
+    /* USART1 在 APB2，USART2/3 与 UART4/5 在 APB1。总线选错则串口时钟不开，
+     * 寄存器读写全部无效，中断也不会进来。 */
+#if MODBUS_USART_ON_APB2
     RCC_APB2PeriphClockCmd(MODBUS_USART_RCC, ENABLE);
+#else
+    RCC_APB1PeriphClockCmd(MODBUS_USART_RCC, ENABLE);
+#endif
+
     USART_Cmd(MODBUS_USART, DISABLE);
 
     USART_StructInit(&usart);

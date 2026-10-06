@@ -11,7 +11,7 @@
 #endif
 
 //flash地址
-#define MODBUS_CONFIG_FLASH_PAGE_ADDRESS   ((uint32_t)0x0803F800U)
+#define MODBUS_CONFIG_FLASH_PAGE_ADDRESS   ((uint32_t)0x0801F800U)
 #define MODBUS_CONFIG_FLASH_PAGE_SIZE      ((uint32_t)0x00000800U)
 
 //串口配置保存
@@ -52,20 +52,27 @@
 #define MODBUS_BAUD_CODE_115200            7U
 
 //引脚设置
-#define MODBUS_USART                       USART1
-#define MODBUS_USART_IRQn                  USART1_IRQn
-#define MODBUS_USART_IRQHandler            USART1_IRQHandler
-#define MODBUS_USART_RCC                   RCC_APB2Periph_USART1
+#define MODBUS_USART                       USART2
+#define MODBUS_USART_IRQn                  USART2_IRQn
+#define MODBUS_USART_IRQHandler            USART2_IRQHandler
+#define MODBUS_USART_RCC                   RCC_APB1Periph_USART2
+
+/* 串口挂在哪个总线：USART1 在 APB2(1)，USART2/3、UART4/5 在 APB1(0)。
+ * 换串口时必须同时改这一项，否则 RCC 时钟使能不能生效。 */
+#define MODBUS_USART_ON_APB2               0U
+
 #define MODBUS_USART_GPIO_RCC              RCC_APB2Periph_GPIOA
 #define MODBUS_USART_GPIO                  GPIOA
-#define MODBUS_USART_TX_PIN                GPIO_Pin_9
-#define MODBUS_USART_RX_PIN                GPIO_Pin_10
+#define MODBUS_USART_TX_PIN                GPIO_Pin_2
+#define MODBUS_USART_RX_PIN                GPIO_Pin_3
 
 //串口配置
-#define MODBUS_RS485_DE_RCC                RCC_APB2Periph_GPIOB
-#define MODBUS_RS485_DE_GPIO               GPIOB
-#define MODBUS_RS485_DE_PIN                GPIO_Pin_1
-#define MODBUS_RS485_DE_ACTIVE_HIGH        1U
+//DE/RE 极性：常见 MAX485 模块把 DE 与 /RE 短接，高电平发送 -> 填 1；
+//若模块是低电平发送（DE 前级带反相）-> 填 0。极性错则永远发不出去。
+#define MODBUS_RS485_DE_RCC                RCC_APB2Periph_GPIOA
+#define MODBUS_RS485_DE_GPIO               GPIOA
+#define MODBUS_RS485_DE_PIN                GPIO_Pin_8
+#define MODBUS_RS485_DE_ACTIVE_HIGH        0U
 
 #define MODBUS_FRAME_TIMER                 TIM2
 #define MODBUS_FRAME_TIMER_IRQn            TIM2_IRQn

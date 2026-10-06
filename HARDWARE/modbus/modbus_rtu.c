@@ -547,7 +547,7 @@ void Modbus_Init(void)
 void Modbus_Poll(void)
 {
     uint16_t event;
-    uint8_t rx_faults = ModbusPort_TackRxFault();
+    uint8_t rx_faults = ModbusPort_TakeRxFault();
 
     if (rx_faults != 0U)
     {

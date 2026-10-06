@@ -42,19 +42,28 @@ int main(void)
 
 	if (!BSP_Clock_Init())
   {
-       
+        /* HSE 没起振或 PLL 没锁定时，时钟仍停在 HSI 8MHz，
+         * 波特率和 T3.5 会全部算错。这里必须停机暴露问题，
+         * 不要静默继续跑，否则排查时会被误导成协议层故障。 */
+        while (1)
+        {
+        }
   }
-	
+	  
 	  
   (void)ModbusData_SetInputRegister(4U, 2026U);
   (void)ModbusData_SetDiscreteInput(1U, true);
-	
+	Modbus_Init();
+
 	
   while(1)
   {
+//		
+//		USART_SendData(USART2, 0x55);
+//    while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
+//		
 
-		 Modbus_Init();
-
+		
    
 		 Modbus_Poll();
 //		temperature = DS18B20_Get_Temp();

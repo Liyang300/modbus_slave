@@ -105,7 +105,7 @@ bool ModbusPort_PopRxEvent(uint16_t *event)
 	return true;
 }
 
-uint8_t ModbusPort_TackRxFault(void)
+uint8_t ModbusPort_TakeRxFault(void)
 {
 	uint8_t fault = 0;
 	NVIC_DisableIRQ(MODBUS_USART_IRQn);
